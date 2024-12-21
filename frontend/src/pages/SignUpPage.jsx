@@ -8,7 +8,7 @@ const SignUpPage = () => {
   const [email, setEmail] = useState(emailValue || '');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const {signup}=AuthUser()
+  const {signup, isSigningUp}=AuthUser()
   const handleSignUp = (e) => {
     e.preventDefault();
     signup({email,username,password})
@@ -47,8 +47,8 @@ const SignUpPage = () => {
               </label>
               <input type="password" className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring' placeholder='**********' id='password'  value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
             </div>
-            <button className='w-full py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring' type='submit'>
-              Sign Up
+            <button className='w-full py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring' type='submit' disabled={isSigningUp}>
+              {isSigningUp ? 'Signing Up...' : 'Sign Up'}
             </button>
           </form>
 

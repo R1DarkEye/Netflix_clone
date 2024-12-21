@@ -5,7 +5,7 @@ import { AuthUser } from '../store/AuthUser'
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {login}=AuthUser();
+  const {login,isLoggingIn}=AuthUser();
   const handleLogin=(e) => {
     e.preventDefault();
     login({email,password})
@@ -37,8 +37,8 @@ const LoginPage = () => {
               </label>
               <input type="password" className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring' placeholder='**********' id='password'  value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
             </div>
-            <button className='w-full py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring' type='submit'>
-              Login
+            <button className='w-full py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring' type='submit' disabled={isLoggingIn}>
+              {isLoggingIn ? 'Logging In...' : 'Login'}
             </button>
           </form>
 
